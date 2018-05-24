@@ -1,0 +1,83 @@
+# Finnish and Portuguese: `apertium-fin-por`
+
+This is an Apertium language pair for translating between Finnish and
+Portuguese. What you can use this language package for:
+
+* Translating between Finnish and Portuguese
+* Morphological analysis of Finnish and Portuguese
+* Part-of-speech tagging of Finnish and Portuguese
+
+For information on the latter two points, see subheading "For more information"
+below.
+
+## Requirements
+
+You will need the following software installed:
+
+* lttoolbox (>= 3.3.0)
+* apertium (>= 3.3.0)
+* vislcg3 (>= 0.9.9.10297)
+* hfst (>= 3.8.2)
+* apertium-fin
+* apertium-por
+
+If this does not make any sense, we recommend you look at: www.apertium.org.
+
+## Compiling
+
+Given the requirements being installed, you should be able to just run:
+
+```
+$ ./configure
+$ make
+# make install
+```
+
+If you installed any prerequisite language packages using a `--prefix`
+to `./configure`, make sure to give the same `--prefix` to `./configure` here.
+
+# Testing
+
+If you are in the source directory after running make, the following
+commands should work:
+
+    $  echo "TODO test sentence 1" | apertium -d . fin-por
+    TODO test translated sentence 1
+
+    $ echo "TODO test sentence 2" | apertium -d . por-fin
+    TODO test translated sentence 2
+
+After installing somewhere in `$PATH`, you should be able to do e.g.
+
+    $  echo "TODO test sentence 1" | apertium fin-por
+    TODO test translated sentence 1
+
+# Files and data
+
+* `apertium-fin-por.fin-por.dix`  - Bilingual dictionary
+* `apertium-fin-por.fin-por.t1x`  - Chunking rules for translating into Portuguese
+* `apertium-fin-por.por-fin.t1x`  - Chunking rules for translating into Finnish
+* `apertium-fin-por.fin-por.t2x`  - Interchunk rules for translating into Portuguese
+* `apertium-fin-por.por-fin.t2x`  - Interchunk rules for translating into Finnish
+* `apertium-fin-por.fin-por.t3x`  - Postchunk rules for translating into Portuguese
+* `apertium-fin-por.por-fin.t3x`  - Postchunk rules for translating into Finnish
+* `apertium-fin-por.fin-por.lrx`  - Lexical selection rules for translating into Portuguese
+* `apertium-fin-por.por-fin.lrx`  - Lexical selection rules for translating into Finnish
+* `modes.xml`                     - Translation modes
+
+# For more information
+
+* http://wiki.apertium.org/wiki/Installation
+* http://wiki.apertium.org/wiki/apertium-fin-por
+* http://wiki.apertium.org/wiki/Using_an_lttoolbox_dictionary
+
+# Help and support
+
+If you need help using this language pair or data, you can contact:
+
+* Mailing list: apertium-stuff@lists.sourceforge.net
+* IRC: `#apertium` on `irc.freenode.net`
+
+See also the file AUTHORS included in this distribution.
+
+<!-- vim: set ft=markdown: -->
