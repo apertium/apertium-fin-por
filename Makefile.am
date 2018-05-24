@@ -12,7 +12,6 @@ BASENAME=apertium-$(PREFIX1)
 
 TARGETS_COMMON =		\
 	$(PREFIX1).automorf.hfst	\
-	$(PREFIX1).prob		\
 	$(PREFIX1).rlx.bin	\
 	$(PREFIX1).autobil.bin	\
 	$(PREFIX1).autolex.bin	\
@@ -22,12 +21,10 @@ TARGETS_COMMON =		\
 	$(PREFIX1).t2x.bin	\
 	$(PREFIX1).t3x.bin	\
 	$(PREFIX2).automorf.bin	\
-	$(PREFIX2).prob		\
 	$(PREFIX2).rlx.bin	\
 	$(PREFIX2).autobil.bin	\
 	$(PREFIX2).autolex.bin	\
-	$(PREFIX2).autogen.bin	\
-	$(PREFIX2).autopgen.hfst	\
+	$(PREFIX2).autogen.hfst	\
 	$(PREFIX2).t1x.bin	\
 	$(PREFIX2).t2x.bin	\
 	$(PREFIX2).t3x.bin
@@ -43,8 +40,10 @@ TARGETS_COMMON =		\
 # -------------------
 # Finnish analysis:
 # -------------------
+.deps/$(LANG1).automorf.hfst: $(AP_SRC1)/$(LANG1).automorf.hfst
+	cp -v $< $@
 
-$(PREFIX1).automorf.hfst: .deps/$(LANG1).automorf.hfst
+$(PREFIX1).automorf.hfst: $(AP_SRC1)/$(LANG1).automorf.hfst
 	cp -v $< $@
 
 # -------------------
@@ -72,15 +71,6 @@ $(PREFIX2).automorf.bin: .deps/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
 $(PREFIX1).autogen.bin: $(AP_SRC2)/$(LANG2).autogen.bin
 	cp $< $@
 
-###############################################################################
-## Tagger models
-###############################################################################
-
-$(PREFIX1).prob: $(AP_SRC1)/$(LANG1).prob
-	cp $< $@
-
-$(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
-	cp $< $@
 
 ###############################################################################
 ## Disambiguation rules
@@ -150,8 +140,6 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 $(PREFIX1).autopgen.bin: $(AP_SRC2)/$(LANG2).autopgen.bin
 	cp $< $@
 
-$(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
-	cp $< $@
 
 ###############################################################################
 ## Distribution
@@ -187,7 +175,7 @@ apertium_fin_por_DATA=	\
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
 noinst_DATA=modes/$(PREFIX1).mode \
-	.deps/$(LANG1).automorf.bin \
+	.deps/$(LANG1).automorf.hfst \
 	.deps/$(LANG2).automorf.bin
 
 install-data-local: install-modes
@@ -205,11 +193,11 @@ clean-local:
 ###############################################################################
 
 test: all
-	echo "house" | apertium -d . fin-por | tee .test-mt
-	@echo "house" > .test-ref
+	echo "talo" | apertium -d . fin-por | tee .test-mt
+	@echo "casa" > .test-ref
 	@diff .test-ref .test-mt
-	echo "house" | apertium -d . por-fin | tee .test-mt
-	@echo "house" > .test-ref
+	echo "casa" | apertium -d . por-fin | tee .test-mt
+	@echo "talo" > .test-ref
 	@diff .test-ref .test-mt
 	@rm .test-ref .test-mt
 
