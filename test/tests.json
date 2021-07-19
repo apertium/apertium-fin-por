@@ -1,0 +1,10 @@
+{
+    "fin-por": {
+        "input": "fin-por-input.txt",
+        "mode": "fin-por"
+    },
+    "por-fin": {
+        "input": "por-fin-input.txt",
+        "mode": "por-fin"
+    }
+}

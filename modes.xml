@@ -10,7 +10,7 @@
       </program>
 
 
-      <program name="cg-proc -w">
+      <program name="cg-proc -w -1 -n">
         <file name="fin-por.rlx.bin"/>
       </program>
       <program name="apertium-pretransfer"/>
@@ -51,7 +51,7 @@
       </program>
 
 
-      <program name="cg-proc -w">
+      <program name="cg-proc -w -1 -n">
         <file name="por-fin.rlx.bin"/>
       </program>
       <program name="apertium-pretransfer"/>
@@ -73,7 +73,7 @@
         <file name="apertium-fin-por.por-fin.t3x"/>
         <file name="por-fin.t3x.bin"/>
       </program>
-      <program name="lt-proc $1">
+      <program name="hfst-proc $1">
         <file name="por-fin.autogen.hfst"/>
       </program>
 
